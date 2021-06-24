@@ -65,9 +65,8 @@ class TopClient
     }
 
 
-
     /**
-     * @param string $action
+     * @param string $identify
      */
     function setIdentify(string $identify){
         $this->identify = $identify;
