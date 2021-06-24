@@ -26,7 +26,6 @@ class TopClient
     public string $action ;
     public string $apiUrl ;
     public array  $params;
-    public string $version;
 
 
     /**
@@ -63,6 +62,15 @@ class TopClient
      */
     function setAction(string $action){
         $this->action = $action;
+    }
+
+
+
+    /**
+     * @param string $action
+     */
+    function setIdentify(string $identify){
+        $this->identify = $identify;
     }
 
 
