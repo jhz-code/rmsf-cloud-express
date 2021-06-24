@@ -1,5 +1,5 @@
 {
-    "name": "rmtop/rmsf-yt-express",
+    "name": "rmtop/rmsf-cloud-express",
     "description": "\"express\"",
     "require": {
         "topthink/think-migration": "^3.0",
