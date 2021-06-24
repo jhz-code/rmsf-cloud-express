@@ -15,8 +15,10 @@ class YtConfig
 
     /**
      * 创建圆通配置
+     * @param string $apiUrl
      * @param string $clientId
      * @param string $key
+     * @param string $version
      * @return TopExpressConfig|\think\Model
      */
     static function addConfig(string $apiUrl,string $clientId,string $key,string $version){
@@ -46,8 +48,8 @@ class YtConfig
        $find->config = serialize([
            'apiUrl'=>$apiUrl,
            'clientId'=>$clientId,
-           'key'=>$key
-           ,'version'=>$version
+           'key'=>$key,
+           'version'=>$version
        ]);
        return $find->save();
     }
@@ -63,7 +65,7 @@ class YtConfig
      */
   static   function getConfig(int $id){
         $find =  TopExpressConfig::find($id);
-        return unserialize($find->config);
+        return unserialize($find['config']);
     }
 
 
