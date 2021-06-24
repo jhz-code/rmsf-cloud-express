@@ -4,7 +4,7 @@
 namespace RmTop\RmExpress\lib;
 
 
-class PublishFile
+class TopPublishFile
 {
 
     /**

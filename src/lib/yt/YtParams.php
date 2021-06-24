@@ -114,5 +114,16 @@ class YtParams extends YtConfig
     }
 
 
+    /**
+     * 生成请求地址
+     * @param string $Url
+     * @return string
+     */
+    function getApiUrl(string $Url): string
+    {
+       return "";
+    }
+
+
 
 }

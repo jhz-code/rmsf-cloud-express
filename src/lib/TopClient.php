@@ -7,7 +7,6 @@ namespace RmTop\RmExpress\lib;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Middleware;
-use RmTop\RmExpress\lib\yt\YtConfig;
 use RmTop\RmExpress\lib\yt\YtParams;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\DbException;
@@ -27,6 +26,7 @@ class TopClient
     public string $action ;
     public string $apiUrl ;
     public array  $params;
+    public string $version;
 
 
     /**
@@ -71,7 +71,7 @@ class TopClient
      * @param string $apiUrl
      */
     function setApiUrl(string $apiUrl){
-        $this->apiUrl = $apiUrl;
+        $this->apiUrl = (new YtParams($this->configId))->getApiUrl($apiUrl);
     }
 
 

@@ -32,7 +32,6 @@ class PublishExpressFile extends Command
      * @param Input $input
      * @param Output $output
      * @return int|void|null
-     * @throws \ReflectionException
      */
     protected function execute(Input $input, Output $output)
     {
