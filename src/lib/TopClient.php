@@ -1,57 +1,55 @@
 <?php
 
 
-namespace RmTop\RmExpressYt\lib;
+namespace RmTop\RmExpress\lib;
 
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Middleware;
+use RmTop\RmExpress\lib\yt\YtConfig;
+use RmTop\RmExpress\lib\yt\YtParams;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\DbException;
 use think\db\exception\ModelNotFoundException;
 
+/**
+ * 客户请求客户端
+ * Class TopClient
+ * @package RmTop\RmExpress\lib
+ *
+ */
 class TopClient
 {
 
-
-    public string $api ;
-    public string $version ;
-    public string $appKey ;
+    public string $identify ;
+    public string $configId ;
     public string $action ;
-    protected array $params;
-    protected int $configId;
+    public string $apiUrl ;
+    public array  $params;
 
 
     /**
-     * @throws ModelNotFoundException
-     * @throws DbException
+     * @return array
      * @throws DataNotFoundException
-     */
-    public function __construct()
-    {
-
-    }
-
-
-
-    /**
+     * @throws DbException
      * @throws GuzzleException
+     * @throws ModelNotFoundException
      */
     function Client(): array
     {
-        $this->Config();
         $client = new Client();
         // Grab the client's handler instance.
         $clientHandler = $client->getConfig('handler');
         // Create a middleware that echoes parts of the request.
         $tapMiddleware = Middleware::tap(function ($request) {
+
         });
-        $result = $client->request('POST', $this->api, [
+        $result = $client->request('POST', $this->apiUrl, [
             'http_errors' => false,
             'headers' => [ 'Accept' => 'application/json','User-Agent' => 'rmtop'],
             'handler' => $tapMiddleware($clientHandler),
-            'json' => array_merge($this->getConfig(),['data'=>$this->params]),
+            'json' => $this->Content(),//获取请求体
         ]);
         $res['StatusCode'] = $result->getStatusCode();
         $res['ReasonPhrase'] = $result->getReasonPhrase();
@@ -60,6 +58,12 @@ class TopClient
     }
 
 
+    /**
+     * @param string $action
+     */
+    function setAction(string $action){
+        $this->action = $action;
+    }
 
 
 
@@ -67,32 +71,9 @@ class TopClient
      * @param string $apiUrl
      */
     function setApiUrl(string $apiUrl){
-        $this->api = $apiUrl;
+        $this->apiUrl = $apiUrl;
     }
 
-    /**
-     * @param string $version
-     */
-    function setVersion(string $version){
-        $this->version = $version;
-    }
-
-
-    /**
-     * @param string $appKey
-     */
-    function setAppKey(string $appKey){
-        $this->appKey = $appKey;
-    }
-
-
-    /**
-     * @param string $action
-     * 设置
-     */
-    function setAction(string $action){
-        $this->action = $action;
-    }
 
 
     /**
@@ -100,49 +81,21 @@ class TopClient
      * @param int $configId
      */
     function setConfigId(int $configId){
-        $this->configId = $configId;
-    }
-
-    /**
-     * 设置参数
-     * @param array $param
-     */
-    function setParams(array $param){
-        $this->params = $param;
-    }
-
-
-    /**
-     * @throws ModelNotFoundException
-     * @throws DataNotFoundException
-     * @throws DbException
-     */
-    function Config(){
-        $config = TopStoreConfig::getConfig($this->configId);
-        if($config){
-            $this->api = $config['apiUrl'];
-            $this->appKey = $config['appKey'];
-            $this->version =  $config['version'];
-        }
+         $this->configId = $configId;
     }
 
 
 
-
-
     /**
-     * 获取配置项
      * @return array
      */
-    function  getConfig(): array
+    function Content(): array
     {
-        return [
-            'api'=>$this->api,
-            'version'=>$this->version,
-            'appKey'=>$this->appKey,
-            'url' => $this->action
-        ];
+        if(strtoupper($this->identify ) == "YT"){
+           return (new YtParams($this->configId))->get_body();
+        }else{
+           return [];
+        }
     }
-
 
 }

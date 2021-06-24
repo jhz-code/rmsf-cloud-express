@@ -7,7 +7,7 @@
  */
 
 
-namespace RmTop\RmExpressYt\core;
+namespace RmTop\RmExpress\core;
 
 
 class TopExpress
