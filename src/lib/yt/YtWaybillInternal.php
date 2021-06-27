@@ -4,7 +4,13 @@
 namespace RmTop\RmExpress\lib\yt;
 
 
-class YtParams extends YtConfig
+/**
+ * Class YtWaybillInternal
+ * @package RmTop\RmExpress\lib\yt
+ * 面单取号接口参数
+ */
+
+class YtWaybillInternal extends YtConfig
 {
 
     protected $sender;

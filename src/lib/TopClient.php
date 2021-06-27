@@ -7,7 +7,7 @@ namespace RmTop\RmExpress\lib;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Middleware;
-use RmTop\RmExpress\lib\yt\YtParams;
+use RmTop\RmExpress\lib\yt\YtWaybillInternal;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\DbException;
 use think\db\exception\ModelNotFoundException;
