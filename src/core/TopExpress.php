@@ -12,6 +12,7 @@ namespace RmTop\RmExpress\core;
 
 use GuzzleHttp\Exception\GuzzleException;
 use RmTop\RmExpress\lib\TopClient;
+use RmTop\RmExpress\lib\yt\YtBaseParam;
 use RmTop\RmExpress\lib\yt\YtKorderCreateParam;
 use RmTop\RmExpress\lib\yt\YtOrderCreateParam;
 use RmTop\RmExpress\lib\yt\YtWaybillInternal;
@@ -139,5 +140,25 @@ class TopExpress
         return $TopClient->Client();
     }
 
+
+    /**
+     * 电子面单余额查询接
+     * @param int $configId
+     * @param string $apiUrl
+     * @return array
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws GuzzleException
+     * @throws ModelNotFoundException
+     */
+    function yt_waybill_balance_adapter(int $configId,string $apiUrl){
+        $TopParams = new YtBaseParam($configId);
+        $TopParams->create_method('waybill_balance_adapter');
+        $TopParams->create_params();
+        $TopClient = new TopClient();
+        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setContent($TopParams->get_body());
+        return $TopClient->Client();
+    }
 
 }
