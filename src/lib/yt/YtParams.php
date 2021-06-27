@@ -10,9 +10,8 @@ class YtParams extends YtConfig
     protected $sender;
     protected $receiver;
     protected $logistics;
-    protected $sign;
     protected $Config;
-    protected $Method;
+    protected $method;
 
     public function __construct($configId)
     {
@@ -26,9 +25,9 @@ class YtParams extends YtConfig
      */
     function get_body(): array
     {
-       $body['time']  = time();
-       $body['param'] = $this->logistics;
-       $body['sign'] = $this->sign;
+       $body['timestamp']  = time();
+       $body['param'] = self::getParams($this->logistics);
+       $body['sign'] = YtSign::create_sign(self::getParams($this->logistics),$this->method,$this->Config['verison'],$this->Config['key']);
        $body['format'] = "JSON";
        return $body;
     }
@@ -38,7 +37,7 @@ class YtParams extends YtConfig
      * @param string $method
      */
     function create_method(string $method){
-        $this->Method  = $method;
+        $this->method  = $method;
     }
 
 
@@ -103,18 +102,6 @@ class YtParams extends YtConfig
 
 
     /**
-     * 加密数据
-     * @param string $data
-     * @param string $key
-     * @return string
-     */
-    function getSign(string $data,string $key): string
-    {
-        return base64_encode(md5($this->logistics.$this->Method,$this->Config['key']));
-    }
-
-
-    /**
      * 生成请求地址
      * @param string $Url
      * @return string
@@ -122,6 +109,16 @@ class YtParams extends YtConfig
     function getApiUrl(string $Url): string
     {
        return "";
+    }
+
+
+    /**
+     * 格式化参数
+     * @param $params
+     * @return false|string
+     */
+    static  function getParams($params){
+        return  json_encode($params, JSON_UNESCAPED_UNICODE);
     }
 
 

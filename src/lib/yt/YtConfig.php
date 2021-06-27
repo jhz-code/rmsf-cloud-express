@@ -34,9 +34,11 @@ class YtConfig
 
     /**
      * 修改配置
+     * @param string $apiUrl
      * @param int $id
      * @param string $clientId
      * @param string $key
+     * @param string $version
      * @return bool
      * @throws DataNotFoundException
      * @throws DbException
@@ -80,16 +82,6 @@ class YtConfig
 
 // ---------------------------------------------- 圆通数据处理  ---------------------------------------
 
-    /**
-     * 加密数据
-     * @param string $data
-     * @param string $key
-     * @return string
-     */
-    function getSign(string $data,string $key): string
-    {
-      return base64_encode(md5($data.$key));
-    }
 
 
 

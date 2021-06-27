@@ -21,11 +21,8 @@ use think\db\exception\ModelNotFoundException;
 class TopClient
 {
 
-    public string $identify ;
-    public string $configId ;
-    public string $action ;
     public string $apiUrl ;
-    public array  $params;
+    public $content;
 
 
     /**
@@ -48,7 +45,7 @@ class TopClient
             'http_errors' => false,
             'headers' => [ 'Accept' => 'application/json','User-Agent' => 'rmtop'],
             'handler' => $tapMiddleware($clientHandler),
-            'json' => $this->Content(),//获取请求体
+            'json' => $this->content,//获取请求体
         ]);
         $res['StatusCode'] = $result->getStatusCode();
         $res['ReasonPhrase'] = $result->getReasonPhrase();
@@ -57,52 +54,21 @@ class TopClient
     }
 
 
-    /**
-     * @param string $action
-     */
-    function setAction(string $action){
-        $this->action = $action;
-    }
-
-
-    /**
-     * @param string $identify
-     */
-    function setIdentify(string $identify){
-        $this->identify = $identify;
-    }
 
 
 
     /**
-     * @param string $apiUrl
+     * @param $content
+     * @return void
      */
-    function setApiUrl(string $apiUrl){
-        $this->apiUrl = (new YtParams($this->configId))->getApiUrl($apiUrl);
-    }
-
-
-
-    /**
-     * 设置读取配置的ID
-     * @param int $configId
-     */
-    function setConfigId(int $configId){
-         $this->configId = $configId;
-    }
-
-
-
-    /**
-     * @return array
-     */
-    function Content(): array
+    function setContent($content)
     {
-        if(strtoupper($this->identify ) == "YT"){
-           return (new YtParams($this->configId))->get_body();
-        }else{
-           return [];
-        }
+        $this->content = $content;
+    }
+
+
+    function setApiUrl(string $apiUrl){
+        $this->apiUrl = $apiUrl;
     }
 
 }

@@ -10,7 +10,7 @@
 namespace RmTop\RmExpress\command;
 
 
-use RmTop\RmExpress\lib\PublishFile;
+use RmTop\RmExpress\lib\TopPublishFile;
 use think\console\Command;
 use think\console\Input;
 use think\console\Output;
@@ -23,7 +23,7 @@ class PublishExpressFile extends Command
     protected function configure()
     {
         $this->setName('rmtop:publish_express')
-            ->setDescription('publish_express ');
+            ->setDescription('发布圆通快递配置文件 ');
     }
 
 
@@ -37,7 +37,7 @@ class PublishExpressFile extends Command
     {
 
         try{
-            PublishFile::PublishFileToSys($output);//发布文件
+            TopPublishFile::PublishFileToSys($output);//发布文件
             $output->writeln("all publish successfully！");
         }catch (Exception $exception){
             $output->writeln($exception->getMessage());
