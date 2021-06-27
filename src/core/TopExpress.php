@@ -161,4 +161,25 @@ class TopExpress
         return $TopClient->Client();
     }
 
+
+    /**标准运价查询接口
+     * @param int $configId
+     * @param string $apiUrl
+     * @param array $param
+     * @return array
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws GuzzleException
+     * @throws ModelNotFoundException
+     */
+    function yt_charge_adapter(int $configId,string $apiUrl,array $param){
+        $TopParams = new YtBaseParam($configId);
+        $TopParams->create_method('charge_adapter');
+        $TopParams->charge_params($param);
+        $TopClient = new TopClient();
+        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setContent($TopParams->get_body());
+        return $TopClient->Client();
+    }
+
 }

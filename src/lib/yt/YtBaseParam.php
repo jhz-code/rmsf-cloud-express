@@ -53,6 +53,28 @@ class YtBaseParam
     }
 
 
+    function charge_params($params){
+        $this->params['fromCountry'] = $params['fromCountry'];
+        $this->params['country'] = $params['country'];
+        $this->params['startProv'] = $params['startProv'];
+        $this->params['startCity'] = $params['startCity'];
+        $this->params['startCountry'] = $params['startCountry'];
+        $this->params['startTown'] = $params['startTown'];
+        $this->params['startAddress'] = $params['startAddress'];
+
+        $this->params['endProv'] = $params['endProv'];
+        $this->params['endCity'] = $params['endCity'];
+        $this->params['endCountry'] = $params['endCountry'];
+        $this->params['endTown'] = $params['endTown'];
+        $this->params['endAddress'] = $params['endAddress'];
+        $this->params['weight'] = $params['weight'];
+        $this->params['length'] = $params['length'];
+        $this->params['width'] = $params['width'];
+        $this->params['height'] = $params['height'];
+    }
+
+
+
     /**
      * 格式化参数
      * @param $params
