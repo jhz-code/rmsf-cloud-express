@@ -36,7 +36,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_waybill_internal_adapter(int $configId,string $apiUrl,array $sender,array $receiver,array $logistics): array
+    function yt_waybill_internal_adapter(int $configId,array $sender,array $receiver,array $logistics,string $apiUrl = ""): array
     {
         $TopParams = new YtWaybillInternal($configId);
         $TopParams->create_sender($sender);//发货人
@@ -44,7 +44,7 @@ class TopExpress
         $TopParams->create_logistics_interface($logistics);
         $TopParams->create_method('waybill_internal_adapter');
         $TopClient = new TopClient();
-        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setApiUrl($TopParams->getApiUrl($apiUrl));
         $TopClient->setContent($TopParams->get_body());
         return $TopClient->Client();
     }
@@ -63,7 +63,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_korder_create_adapter(int $configId,string $apiUrl,array $sender,array $receiver,array $params): array
+    function yt_korder_create_adapter(int $configId,array $sender,array $receiver,array $params,string $apiUrl = ""): array
     {
         $TopParams = new YtKorderCreateParam($configId);
         $TopParams->create_method('korder_create_adapter');
@@ -71,7 +71,7 @@ class TopExpress
         $TopParams->create_receiver($receiver);
         $TopParams->create_params($params);
         $TopClient = new TopClient();
-        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setApiUrl($TopParams->getApiUrl($apiUrl));
         $TopClient->setContent($TopParams->get_body());
         return $TopClient->Client();
     }
@@ -80,13 +80,13 @@ class TopExpress
     /**
      * 订单取消
      */
-    function yt_korder_cancel_adapter(int $configId,string $apiUrl,array $params): array
+    function yt_korder_cancel_adapter(int $configId,array $params,string $apiUrl = ""): array
     {
         $TopParams = new YtKorderCreateParam($configId);
         $TopParams->create_method('korder_create_adapter');
         $TopParams->create_korder_cancel_params($params);
         $TopClient = new TopClient();
-        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setApiUrl($TopParams->getApiUrl($apiUrl));
         $TopClient->setContent($TopParams->get_body());
         return $TopClient->Client();
     }
@@ -105,7 +105,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_order_create_adapter(int $configId,string $apiUrl,array $sender,array $receiver,array $params): array
+    function yt_order_create_adapter(int $configId,array $sender,array $receiver,array $params,string $apiUrl = ""): array
     {
         $TopParams = new YtOrderCreateParam($configId);
         $TopParams->create_method('order_create_adapter');
@@ -113,7 +113,7 @@ class TopExpress
         $TopParams->create_receiver($receiver);
         $TopParams->create_params($params);
         $TopClient = new TopClient();
-        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setApiUrl($TopParams->getApiUrl($apiUrl));
         $TopClient->setContent($TopParams->get_body());
         return $TopClient->Client();
     }
@@ -130,12 +130,12 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_order_cancel_adapter(int $configId,string $apiUrl,array $params){
+    function yt_order_cancel_adapter(int $configId,array $params,string $apiUrl = ""){
         $TopParams = new YtOrderCreateParam($configId);
         $TopParams->create_method('order_cancel_adapter');
         $TopParams->create_order_cancel_params($params);
         $TopClient = new TopClient();
-        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setApiUrl($TopParams->getApiUrl($apiUrl));
         $TopClient->setContent($TopParams->get_body());
         return $TopClient->Client();
     }
@@ -151,12 +151,12 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_waybill_balance_adapter(int $configId,string $apiUrl){
+    function yt_waybill_balance_adapter(int $configId,string $apiUrl = ""){
         $TopParams = new YtBaseParam($configId);
         $TopParams->create_method('waybill_balance_adapter');
         $TopParams->create_params();
         $TopClient = new TopClient();
-        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setApiUrl($TopParams->getApiUrl($apiUrl));
         $TopClient->setContent($TopParams->get_body());
         return $TopClient->Client();
     }
@@ -172,12 +172,12 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_charge_adapter(int $configId,string $apiUrl,array $param){
+    function yt_charge_adapter(int $configId,array $param,string $apiUrl = ""){
         $TopParams = new YtBaseParam($configId);
         $TopParams->create_method('charge_adapter');
         $TopParams->charge_params($param);
         $TopClient = new TopClient();
-        $TopClient->setApiUrl($apiUrl);
+        $TopClient->setApiUrl($TopParams->getApiUrl($apiUrl));
         $TopClient->setContent($TopParams->get_body());
         return $TopClient->Client();
     }

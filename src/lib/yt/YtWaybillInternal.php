@@ -112,9 +112,13 @@ class YtWaybillInternal extends YtConfig
      * @param string $Url
      * @return string
      */
-    function getApiUrl(string $Url): string
+    function getApiUrl(string $Url = ""): string
     {
-       return "";
+        if(empty($Url)){
+            return $this->Config['apiUrl']."/".$this->method."/".$this->Config['version'].'/TIErGi/'.$this->$this->Config['clientId'];
+        }else{
+            return $Url;
+        }
     }
 
 

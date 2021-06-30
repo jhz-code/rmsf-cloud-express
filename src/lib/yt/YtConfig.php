@@ -8,6 +8,7 @@ use RmTop\RmExpress\model\TopExpressConfig;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\DbException;
 use think\db\exception\ModelNotFoundException;
+use think\Model;
 
 class YtConfig
 {
@@ -19,7 +20,7 @@ class YtConfig
      * @param string $clientId
      * @param string $key
      * @param string $version
-     * @return TopExpressConfig|\think\Model
+     * @return TopExpressConfig|Model
      */
     static function addConfig(string $apiUrl,string $clientId,string $key,string $version){
         $data['identify'] = 'YT';
