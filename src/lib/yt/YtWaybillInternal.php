@@ -31,11 +31,11 @@ class YtWaybillInternal extends YtConfig
      */
     function get_body(): array
     {
-       $body['timestamp']  = time();
-       $body['param'] = self::getParams($this->logistics);
-       $body['sign'] = YtSign::create_sign(self::getParams($this->logistics),$this->method,$this->Config['verison'],$this->Config['key']);
-       $body['format'] = "JSON";
-       return $body;
+        $body['timestamp']  = time();
+        $body['param'] = self::getParams(['logistics_interface'=>$this->logistics,'clientId'=>$this->Config['clientId'],'type'=>'offline']);
+        $body['sign'] = YtSign::create_sign(self::getParams(['logistics_interface'=>$this->logistics,'clientId'=>$this->Config['clientId'],'type'=>'offline']),$this->method,$this->Config['version'],$this->Config['key']);
+        $body['format'] = "JSON";
+        return $body;
     }
 
 
@@ -58,21 +58,22 @@ class YtWaybillInternal extends YtConfig
         $this->logistics['tradeNo'] = $this->Config['clientId'];
         $this->logistics['orderType'] = $logistics['orderType'];
         $this->logistics['serviceType'] = $logistics['serviceType'];
-        $this->logistics['flag'] = $logistics['flag'];
-        $this->logistics['sendStartTime'] = $logistics['sendStartTime'];
-        $this->logistics['sendEndTime'] = $logistics['sendEndTime'];
-        $this->logistics['goodsValue'] = $logistics['goodsValue'];
-        $this->logistics['totalValue'] = $logistics['totalValue'];
-        $this->logistics['agencyFund'] = $logistics['agencyFund'];
-        $this->logistics['itemsValue'] = $logistics['itemsValue'];
-        $this->logistics['itemsWeight'] = $logistics['itemsWeight'];
-        $this->logistics['itemName'] = $logistics['itemName'];
-        $this->logistics['number'] = $logistics['number'];
-        $this->logistics['itemValue'] =$logistics['itemValue'];
-        $this->logistics['special'] = $logistics['special'];
-        $this->logistics['remark'] = $logistics['remark'];
+        $this->logistics['flag'] = $logistics['flag']??"";
+        $this->logistics['sendStartTime'] = $logistics['sendStartTime']??"";
+        $this->logistics['sendEndTime'] = $logistics['sendEndTime']??"";
+        $this->logistics['goodsValue'] = $logistics['goodsValue']??"";
+        $this->logistics['totalValue'] = $logistics['totalValue']??"";
+        $this->logistics['agencyFund'] = $logistics['agencyFund']??"";
+        $this->logistics['itemsValue'] = $logistics['itemsValue']??"";
+        $this->logistics['itemsWeight'] = $logistics['itemsWeight']??"";
+        $this->logistics['itemName'] = $logistics['itemName']??"";
+        $this->logistics['number'] = $logistics['number']??"";
+        $this->logistics['itemValue'] =$logistics['itemValue']??"";
+        $this->logistics['special'] = $logistics['special']??"";
+        $this->logistics['remark'] = $logistics['remark']??"";
         $this->logistics['sender'] = $this->sender;
         $this->logistics['receiver'] =$this->receiver;
+        $this->logistics = json_encode($this->logistics, JSON_UNESCAPED_UNICODE);
     }
 
 
@@ -115,7 +116,7 @@ class YtWaybillInternal extends YtConfig
     function getApiUrl(string $Url = ""): string
     {
         if(empty($Url)){
-            return $this->Config['apiUrl']."/".$this->method."/".$this->Config['version'].'/TIErGi/'.$this->$this->Config['clientId'];
+            return $this->Config['apiUrl']."/".$this->method."/".$this->Config['version'].'/TIErGi/'.$this->Config['clientId'];
         }else{
             return $Url;
         }
