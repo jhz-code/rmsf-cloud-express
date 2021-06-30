@@ -5,6 +5,8 @@ namespace RmTop\RmExpress\lib;
 
 
 use RmTop\RmExpress\model\TopExpressConfig;
+use think\db\exception\DbException;
+use think\Paginator;
 
 class TopExpressConfigManage
 {
@@ -79,6 +81,18 @@ class TopExpressConfigManage
     static  function deleteConfig(int $id): bool
     {
         return TopExpressConfig::where(['id'=>$id])->delete();
+    }
+
+    /**
+     * 获取配置列表
+     * @param int $where  查询
+     * @param int $limit   每页输出
+     * @return Paginator
+     * @throws DbException
+     */
+    static function getExpressConfigList($where = 1,int $limit = 12): Paginator
+    {
+        return TopExpressConfig::where($where)->paginate($limit);
     }
 
 // ---------------------------------------------- 圆通数据处理  ---------------------------------------
