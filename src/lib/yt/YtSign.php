@@ -28,7 +28,7 @@ class YtSign
      */
     static function create_sign($param,string $method,string $version,string $key): string
     {
-        return base64_encode(md5($param.$method.$version.$key));
+        return base64_encode(substr(md5($param.$method.$version.$key),8,16));
     }
 
 
