@@ -31,7 +31,7 @@ class YtBaseParam
     {
         $body['timestamp']  = time();
         $body['param'] = self::getParams($this->params);
-        $body['sign'] = YtSign::create_sign(self::getParams($this->params),$this->method,$this->Config['verison'],$this->Config['key']);
+        $body['sign'] = YtSign::create_sign(self::getParams($this->params),$this->method,$this->Config['version'],$this->Config['key']);
         $body['format'] = "JSON";
         return $body;
     }
@@ -82,7 +82,7 @@ class YtBaseParam
     function getApiUrl(string $Url = ""): string
     {
         if(empty($Url)){
-            return $this->Config['apiUrl']."/".$this->method."/".$this->Config['version'].'/TIErGi/'.$this->$this->Config['clientId'];
+            return $this->Config['apiUrl']."/".$this->method."/".$this->Config['version'].'/TIErGi/'.$this->Config['clientId'];
         }else{
             return $Url;
         }
