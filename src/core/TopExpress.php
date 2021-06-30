@@ -36,7 +36,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_waybill_internal_adapter(int $configId,array $sender,array $receiver,array $logistics,string $apiUrl = ""): array
+   static   function yt_waybill_internal_adapter(int $configId,array $sender,array $receiver,array $logistics,string $apiUrl = ""): array
     {
         $TopParams = new YtWaybillInternal($configId);
         $TopParams->create_sender($sender);//发货人
@@ -63,7 +63,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_korder_create_adapter(int $configId,array $sender,array $receiver,array $params,string $apiUrl = ""): array
+    static  function yt_korder_create_adapter(int $configId,array $sender,array $receiver,array $params,string $apiUrl = ""): array
     {
         $TopParams = new YtKorderCreateParam($configId);
         $TopParams->create_method('korder_create_adapter');
@@ -80,7 +80,7 @@ class TopExpress
     /**
      * 订单取消
      */
-    function yt_korder_cancel_adapter(int $configId,array $params,string $apiUrl = ""): array
+    static function yt_korder_cancel_adapter(int $configId,array $params,string $apiUrl = ""): array
     {
         $TopParams = new YtKorderCreateParam($configId);
         $TopParams->create_method('korder_create_adapter');
@@ -105,7 +105,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_order_create_adapter(int $configId,array $sender,array $receiver,array $params,string $apiUrl = ""): array
+    static  function yt_order_create_adapter(int $configId,array $sender,array $receiver,array $params,string $apiUrl = ""): array
     {
         $TopParams = new YtOrderCreateParam($configId);
         $TopParams->create_method('order_create_adapter');
@@ -130,7 +130,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_order_cancel_adapter(int $configId,array $params,string $apiUrl = ""){
+    static function yt_order_cancel_adapter(int $configId,array $params,string $apiUrl = ""){
         $TopParams = new YtOrderCreateParam($configId);
         $TopParams->create_method('order_cancel_adapter');
         $TopParams->create_order_cancel_params($params);
@@ -151,7 +151,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_waybill_balance_adapter(int $configId,string $apiUrl = ""){
+    static function yt_waybill_balance_adapter(int $configId,string $apiUrl = ""){
         $TopParams = new YtBaseParam($configId);
         $TopParams->create_method('waybill_balance_adapter');
         $TopParams->create_params();
@@ -172,7 +172,7 @@ class TopExpress
      * @throws GuzzleException
      * @throws ModelNotFoundException
      */
-    function yt_charge_adapter(int $configId,array $param,string $apiUrl = ""){
+    static  function yt_charge_adapter(int $configId,array $param,string $apiUrl = ""){
         $TopParams = new YtBaseParam($configId);
         $TopParams->create_method('charge_adapter');
         $TopParams->charge_params($param);
