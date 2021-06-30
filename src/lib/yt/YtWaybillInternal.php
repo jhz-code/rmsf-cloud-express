@@ -73,9 +73,7 @@ class YtWaybillInternal extends YtConfig
         $this->logistics['remark'] = $logistics['remark']??"";
         $this->logistics['sender'] = $this->sender;
         $this->logistics['receiver'] =$this->receiver;
-        $this->logistics = json_encode($this->logistics, JSON_UNESCAPED_UNICODE);
     }
-
 
 
     /**
