@@ -10,6 +10,9 @@
 namespace RmTop\RmExpress\lib\yt;
 
 
+use RmTop\RmExpress\lib\TopExpressConfigManage;
+use think\db\exception\DbException;
+
 class YtBaseParam
 {
 
@@ -18,9 +21,12 @@ class YtBaseParam
     protected  $method;
 
 
+    /**
+     * @throws DbException
+     */
     public function __construct($configId)
     {
-        $this->Config = YtConfig::getConfig($configId);
+        $this->Config = TopExpressConfigManage::getConfig($configId);
     }
 
     /**

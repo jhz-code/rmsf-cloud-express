@@ -9,6 +9,8 @@
 
 namespace RmTop\RmExpress\lib\yt;
 
+use RmTop\RmExpress\lib\TopExpressConfigManage;
+
 /**
  * Class YtOrderCreateParam
  * @package RmTop\RmExpress\lib\yt
@@ -22,9 +24,12 @@ class YtOrderCreateParam
     protected  $params;
     protected  $method;
 
+    /**
+     * @throws \think\db\exception\DbException
+     */
     public function __construct($configId)
     {
-        $this->Config = YtConfig::getConfig($configId);
+        $this->Config = TopExpressConfigManage::getConfig($configId);
     }
 
 

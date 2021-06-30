@@ -4,13 +4,15 @@
 namespace RmTop\RmExpress\lib\yt;
 
 
+use RmTop\RmExpress\lib\TopExpressConfigManage;
+
 /**
  * Class YtWaybillInternal
  * @package RmTop\RmExpress\lib\yt
  * 面单取号接口参数
  */
 
-class YtWaybillInternal extends YtConfig
+class YtWaybillInternal
 {
 
     protected $sender;
@@ -21,7 +23,7 @@ class YtWaybillInternal extends YtConfig
 
     public function __construct($configId)
     {
-        $this->Config = YtConfig::getConfig($configId);
+        $this->Config = TopExpressConfigManage::getConfig($configId);
     }
 
 
