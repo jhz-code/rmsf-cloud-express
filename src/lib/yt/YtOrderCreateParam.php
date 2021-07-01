@@ -65,8 +65,8 @@ class YtOrderCreateParam
         $this->params['logisticsNo'] = $params['logisticsNo'];
         $this->params['remark'] = $params['remark']??"";
         $this->params['gotCode'] = $params['gotCode']??"";
-        $this->params['increments'] = $params['increments']??"";
-        $this->params['goods'] = $params['goods']??"";
+        $this->params['increments'] = $params['increments']??[];
+        $this->params['goods'] = $params['goods']??[];
         $this->params['bookingStartTime'] = $params['bookingStartTime']??"";
         $this->params['bookingEndTime'] = $params['bookingEndTime']??"";
         $this->params['settlementType'] = $params['settlementType']??"";
@@ -87,6 +87,7 @@ class YtOrderCreateParam
         $this->params['senderCountyName'] = $sender['senderCountyName'];
         $this->params['senderTownName'] = $sender['senderTownName'];
         $this->params['senderMobile'] = $sender['senderMobile'];
+        $this->params['senderAddress'] = $sender['senderAddress'];
     }
 
 
