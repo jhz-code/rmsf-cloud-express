@@ -57,7 +57,7 @@ class YtBaseParam
      */
     function create_params(){
         $this->params['clientId'] = $this->Config['clientId'];
-        $this->params['requestDate'] = date("YMD");
+        $this->params['requestDate'] = date("Ymd");
         $this->params['timestamp'] = $this->timestamp;
     }
 
