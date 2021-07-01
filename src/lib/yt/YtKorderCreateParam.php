@@ -62,15 +62,15 @@ class YtKorderCreateParam
         $this->params['customerCode'] = $this->Config['clientId'];
         $this->params['logisticsNo'] = $params['logisticsNo'];
         $this->params['mode'] = $params['mode'];
-        $this->params['remark'] = $params['remark'];
-        $this->params['increments'] = $params['increments'];
-        $this->params['goods'] = $params['goods'];
-        $this->params['bookingStartTime'] = $params['bookingStartTime'];
-        $this->params['bookingEndTime'] = $params['bookingEndTime'];
-        $this->params['settlementType'] = $params['settlementType'];
-        $this->params['cstBusinessType'] = $params['cstBusinessType'];
-        $this->params['cstOrderNo'] = $params['cstOrderNo'];
-        $this->params['weight'] = $params['weight'];
+        $this->params['remark'] = $params['remark']??"";
+        $this->params['increments'] = $params['increments']??"";
+        $this->params['goods'] = $params['goods']??"";
+        $this->params['bookingStartTime'] = $params['bookingStartTime']??"";
+        $this->params['bookingEndTime'] = $params['bookingEndTime']??"";
+        $this->params['settlementType'] = $params['settlementType']??"";
+        $this->params['cstBusinessType'] = $params['cstBusinessType']??"";
+        $this->params['cstOrderNo'] = $params['cstOrderNo']??"";
+        $this->params['weight'] = $params['weight']??"";
     }
 
 
