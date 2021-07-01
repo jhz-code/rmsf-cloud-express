@@ -19,6 +19,7 @@ class YtBaseParam
     protected  $Config;
     protected  $params;
     protected  $method;
+    protected  $timestamp;
 
 
     /**
@@ -27,6 +28,7 @@ class YtBaseParam
     public function __construct($configId)
     {
         $this->Config = TopExpressConfigManage::getConfig($configId);
+        $this->timestamp = time();
     }
 
     /**
@@ -35,7 +37,7 @@ class YtBaseParam
      */
     function get_body(): array
     {
-        $body['timestamp']  = time();
+        $body['timestamp']  = $this->timestamp;
         $body['param'] = self::getParams($this->params);
         $body['sign'] = YtSign::create_sign(self::getParams($this->params),$this->method,$this->Config['version'],$this->Config['key']);
         $body['format'] = "JSON";
@@ -56,6 +58,7 @@ class YtBaseParam
     function create_params(){
         $this->params['clientId'] = $this->Config['clientId'];
         $this->params['requestDate'] = date("YMD");
+        $this->params['timestamp'] = $this->timestamp;
     }
 
 
