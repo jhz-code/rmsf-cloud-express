@@ -11,6 +11,13 @@
             "RmTop\\RmExpress\\": "src/"
         }
     },
+    "extra": {
+        "think": {
+            "services": [
+                "RmTop\\RmExpress\\RmExpressService"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "jhz-code",
