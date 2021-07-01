@@ -10,6 +10,14 @@ composer require rmtop/rmsf-cloud-express
 #### 基础配置
 ~~~
 
+  一：发布圆通快递配置文件 
+  
+  php think  rmtop:publish_express  
+ 
+ 二：自动迁移数据表
+
+  php think migrate:run
+
 ~~~
 
 
