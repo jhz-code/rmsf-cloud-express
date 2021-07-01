@@ -92,7 +92,6 @@ class YtWaybillInternal
         $this->sender['prov']= $sender['prov'];
         $this->sender['city']= $sender['city'];
         $this->sender['address']= $sender['address'];
-        $this->sender = json_encode($this->sender, JSON_UNESCAPED_UNICODE);
     }
 
 
@@ -107,7 +106,6 @@ class YtWaybillInternal
         $this->receiver['prov'] = $receiver['prov'];
         $this->receiver['city'] = $receiver['city'];
         $this->receiver['address'] = $receiver['address'];
-        $this->receiver = json_encode($this->receiver, JSON_UNESCAPED_UNICODE);
 
     }
 
